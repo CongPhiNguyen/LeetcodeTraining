@@ -54,7 +54,7 @@ string Solution::longestCommonPrefix(vector<string>& strs) {
 	}
 	return result;
 }
-// Leetcode challenge 15
+// Leetcode challenge 20
 bool Solution::isValid(string s) {
 	stack<char> st;
 	for (int i = 0; i < s.length(); i++)
@@ -87,4 +87,95 @@ bool Solution::isValid(string s) {
 	if (st.size() == 0)
 		return true;
 	else return false;
+}
+// Leetcode challenge 21
+ListNode* Solution::mergeTwoLists(ListNode* list1, ListNode* list2) {
+	ListNode* result = nullptr;
+	ListNode* resultCal = nullptr;
+	ListNode* resultImplement = nullptr;
+	ListNode* nodeList1 = list1;
+	ListNode* nodeList2 = list2;
+	bool isAssign = false;
+	//int step = 0;
+	while (nodeList1 != nullptr || nodeList2 != nullptr)
+	{
+		if (nodeList1 != nullptr) {
+			if (nodeList2 != nullptr)
+			{
+				if (nodeList1 -> val <= nodeList2 -> val) {
+					if (!isAssign) {
+						result = nodeList1;
+						resultCal = result;
+						//cout << "Assign " << result->val << "\n";
+					}
+					resultImplement = nodeList1;
+					
+					//cout << step++ << " " << resultImplement->val << "\n";
+
+					nodeList1 = nodeList1->next;
+					if (isAssign) {
+						resultCal->next = resultImplement;
+						resultCal = resultCal->next;
+					}
+					resultImplement = resultImplement->next;
+					isAssign = true;
+				}
+				else {
+					if (!isAssign) {
+						result = nodeList2;
+						resultCal = result;
+						//cout <<"Assign " << result -> val << "\n";
+					}
+					resultImplement = nodeList2;
+
+					//cout << step++ << " " << resultImplement->val << "\n";
+
+					nodeList2 = nodeList2->next;
+					if (isAssign) {
+						resultCal->next = resultImplement;
+						resultCal = resultCal->next;
+					}
+					resultImplement = resultImplement->next;
+					isAssign = true;
+				}
+			}
+			else {
+				if (!isAssign) {
+					result = nodeList1;
+					resultCal = result;
+					//cout << "Assign " << result->val << "\n";
+				}
+				resultImplement = nodeList1;
+
+				//cout << step++ << " " << resultImplement->val << "\n";
+
+				nodeList1 = nodeList1 -> next;
+				if (isAssign) {
+					resultCal->next = resultImplement;
+					resultCal = resultCal->next;
+				}
+				resultImplement = resultImplement->next;
+				isAssign = true;
+			}
+		}
+		else {
+			if (!isAssign) {
+				result = nodeList2;
+				resultCal = result;
+				//cout << "Assign " << result->val << "\n";
+			}
+			resultImplement = nodeList2;
+
+			//cout << step++ << " " << resultImplement->val <<"\n";
+
+			nodeList2 = nodeList2 -> next;
+			if (isAssign) {
+				resultCal ->next = resultImplement;
+				resultCal = resultCal->next;
+			}
+			resultImplement = resultImplement -> next;
+			isAssign = true;
+		}
+	}
+	return result;
 }
