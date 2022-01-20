@@ -4,7 +4,8 @@
 
 using namespace std;
 int main() {
+	vector<string> input = { "flower","flow","flight" };
 	Solution s;
-	cout << s.romanToInt("MCMXCIV");
+	cout << s.longestCommonPrefix(input);
 	return 0;
 }
