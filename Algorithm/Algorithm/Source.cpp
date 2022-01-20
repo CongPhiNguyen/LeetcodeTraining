@@ -1,11 +1,11 @@
 ﻿#include <iostream>;
 #include "Solution.h";
 
-
+//cout << boolalpha to print true false easy
 using namespace std;
 int main() {
-	vector<string> input = { "flower","flow","flight" };
-	Solution s;
-	cout << s.longestCommonPrefix(input);
+	string s = ")";
+	Solution solution;
+	cout << boolalpha << solution.isValid(s);
 	return 0;
 }

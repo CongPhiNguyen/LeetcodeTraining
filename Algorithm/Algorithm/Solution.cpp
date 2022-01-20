@@ -55,4 +55,36 @@ string Solution::longestCommonPrefix(vector<string>& strs) {
 	return result;
 }
 // Leetcode challenge 15
-
+bool Solution::isValid(string s) {
+	stack<char> st;
+	for (int i = 0; i < s.length(); i++)
+	{
+		if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+		{
+			st.push(s[i]);
+		}
+		else if (s[i] == ')')
+		{
+			if (st.size() == 0) return false;
+			if (st.top() == '(')
+				st.pop();
+			else return false;
+		}
+		else if (s[i] == '}')
+		{
+			if (st.size() == 0) return false;
+			if (st.top() == '{')
+				st.pop();
+			else return false;
+		}
+		else if (s[i] == ']') {
+			if (st.size() == 0) return false;
+			if (st.top() == '[') 
+				st.pop();
+			else return false;
+		}
+	}
+	if (st.size() == 0)
+		return true;
+	else return false;
+}

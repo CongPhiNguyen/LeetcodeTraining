@@ -1,6 +1,9 @@
-#include <iostream>;
-#include <string>
-#include <vector>
+﻿#include <iostream>;
+#include <string>;
+// Import ở challenge 14
+#include <vector>;
+// Import ở challenge 15
+#include <stack>;
 using namespace std;
 
 #pragma once
@@ -12,5 +15,6 @@ public:
 	// Leetcode challenge 14
 	string longestCommonPrefix(vector<string>& strs);
 	// Leetcode challenge 15
+	bool isValid(string s);
 };
 
