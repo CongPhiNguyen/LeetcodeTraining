@@ -251,3 +251,95 @@ int Solution::maxSubArray(vector<int>& nums) {
 	if (maxSum > result) return maxSum;
 	else return result;
 }
+// Leetcode challenge 2
+vector<int> Solution::createVectorFromArray(int a[], int length)
+{
+	vector<int> result;
+	for (int i = 0; i < length; i++)
+	{
+		result.push_back(a[i]);
+	}
+	return result;
+}
+void Solution::printLinkList(ListNode* head)
+{
+	cout << "Linked list: ";
+	while (head != nullptr)
+	{
+		cout << head->val << " ";
+		head = head->next;
+	}
+	cout << "\n";
+}
+void printVector(vector<int> a) {
+	for (int i = 0; i < a.size(); i++) {
+		cout << a[i] << " ";
+	}
+	cout << "\n";
+	return;
+}
+void printLinkListVector(vector<ListNode*> a) {
+	for (int i = 0; i < a.size(); i++) {
+		cout << a[i] -> val << " ";
+	}
+	cout << "\n";
+	return;
+}
+ListNode* Solution::createLinkList(const vector<int>& a) {
+	vector<ListNode*> list;
+	for (int i = 0; i < a.size(); i++) {
+		ListNode* node = new ListNode(a[i]);
+		list.push_back(node);
+	}
+	for (int i = 0; i < list.size() - 1; i++) {
+		list[i]->next = list[i + 1];
+	}
+	return list[0];
+}
+ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2) {
+	// Add them to vector
+	vector<ListNode*> listL1, listL2;
+	while (l1 != nullptr) {
+		listL1.push_back(l1);
+		l1 = l1->next;
+	}
+	while (l2 != nullptr) {
+		listL2.push_back(l2);
+		l2 = l2->next;
+	}
+
+	printLinkListVector(listL1);
+	printLinkListVector(listL2);
+
+	int expectedLength = listL1.size();
+	if (listL1.size() < listL2.size())
+	{
+		expectedLength = listL2.size();
+	}
+
+	int memNum = 0;
+	vector<ListNode*> result;
+	for (int i = 0; i < expectedLength; i++) {
+		int sum = memNum;
+		if (listL1.size() > i) {
+			sum += listL1[i]->val;
+		}
+		if (listL2.size() > i) {
+			sum += listL2[i]->val;
+		}
+		if (sum >= 10) {
+			sum -= 10;
+			memNum = 1;
+		}
+		else
+			memNum = 0;
+		result.push_back(new ListNode(sum));
+	}
+	if (memNum != 0) {
+		result.push_back(new ListNode(1));
+	}
+	for (int i = 0; i < result.size() - 1; i++) {
+		result[i]->next = result[i + 1];
+	}
+	return result[0];
+}

@@ -36,5 +36,13 @@ public:
 	int searchInsert(vector<int>& nums, int target);
 	// Leetcode challenge 53
 	int maxSubArray(vector<int>& nums);
+	// Leetcode challenge 2
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
+
+
+	// Framework
+	vector<int> createVectorFromArray(int a[], int length);
+	void printLinkList(ListNode* head);
+	ListNode* createLinkList(const vector<int>& a);
 };
 
