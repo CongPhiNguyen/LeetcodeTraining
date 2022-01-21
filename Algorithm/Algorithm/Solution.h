@@ -28,5 +28,7 @@ public:
 	ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
 	// Leetcode challenge 26
 	int removeDuplicates(vector<int>& nums);
+	// Leetcode challenge 27
+	int removeElement(vector<int>& nums, int val);
 };
 
