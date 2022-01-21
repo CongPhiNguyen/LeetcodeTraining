@@ -205,7 +205,16 @@ int Solution::removeElement(vector<int>& nums, int val) {
 	nums = vector<int>(a);
 	return a.size();
 }
+// Leetcode challenge 28
 int Solution::strStr(string haystack, string needle) {
 	if (needle.size() == 0) return 0;
 	return haystack.find(needle);
+}
+// Leetcode challenge 35
+int Solution::searchInsert(vector<int>& nums, int target) {
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[i] >= target) return i;
+	}
+	return nums.size();
 }
