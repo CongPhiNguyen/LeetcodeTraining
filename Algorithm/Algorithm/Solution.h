@@ -30,5 +30,10 @@ public:
 	int removeDuplicates(vector<int>& nums);
 	// Leetcode challenge 27
 	int removeElement(vector<int>& nums, int val);
+	// Leetcode challenge 28
+	int strStr(string haystack, string needle) {
+		if (needle.size() == 0) return 0;
+		return haystack.find(needle);
+	}
 };
 
