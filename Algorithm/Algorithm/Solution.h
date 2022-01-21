@@ -34,5 +34,7 @@ public:
 	int strStr(string haystack, string needle);
 	// Leetcode challenge 35
 	int searchInsert(vector<int>& nums, int target);
+	// Leetcode challenge 53
+	int maxSubArray(vector<int>& nums);
 };
 

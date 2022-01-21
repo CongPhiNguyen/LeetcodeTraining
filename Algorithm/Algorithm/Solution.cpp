@@ -218,3 +218,36 @@ int Solution::searchInsert(vector<int>& nums, int target) {
 	}
 	return nums.size();
 }
+// Leetcode challenge 53
+int Solution::maxSubArray(vector<int>& nums) {
+	int result = 0;
+	int maxSum = 0;
+	int maxNegative = -999999;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[i] < 0)
+		{
+			if (maxSum < result)
+				maxSum = result;
+			if (maxNegative < nums[i])
+			{
+				maxNegative = nums[i];
+			}
+		}
+		else {
+			maxNegative = 100;
+		}
+		if ((result + nums[i]) <= 0)
+		{
+			if (maxSum < result)
+				maxSum = result;
+			result = 0;
+		}
+		else {
+			result += nums[i];
+		}
+	}
+	if (maxNegative < 0) return maxNegative;
+	if (maxSum > result) return maxSum;
+	else return result;
+}
