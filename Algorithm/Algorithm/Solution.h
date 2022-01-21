@@ -26,5 +26,7 @@ public:
 	bool isValid(string s);
 	// Leetcode challenge 21
 	ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
+	// Leetcode challenge 26
+	int removeDuplicates(vector<int>& nums);
 };
 

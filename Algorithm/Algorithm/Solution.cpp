@@ -179,3 +179,17 @@ ListNode* Solution::mergeTwoLists(ListNode* list1, ListNode* list2) {
 	}
 	return result;
 }
+// Leetcode challenge 26
+int Solution::removeDuplicates(vector<int>& nums) {
+	if (nums.size() == 0) return 0;
+	vector<int> a;
+	a.push_back(nums[0]);
+	for (int i = 1; i < nums.size(); i++)
+	{
+		if (nums[i] > nums[i - 1]) {
+			a.push_back(nums[i]);
+		}
+	}
+	nums = vector<int>(a);
+	return a.size();
+}
