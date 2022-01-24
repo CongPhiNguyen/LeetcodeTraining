@@ -1,4 +1,4 @@
-#include "Solution.h"
+﻿#include "Solution.h"
 // Leetcode challenge 13
 int Solution::romanToInt(string s)
 {
@@ -342,4 +342,47 @@ ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2) {
 		result[i]->next = result[i + 1];
 	}
 	return result[0];
+}
+// Leetcode challenge 3
+int Solution::lengthOfLongestSubstring(string s) {
+	//// Các thao tác căn bản với map
+	//map<int, int> mp;
+
+	//mp[0] = 1;
+	//mp[1] = 4;
+	//
+	//map<int, int>::iterator it;
+	//for (it = mp.begin(); it != mp.end(); it++) {
+	//	cout << it->first << " -> " << it->second << "\n";
+	//}
+	//cout << mp.count(5) << "\n";
+
+	cout << "String: " << s << "\n";
+	// Thực hiện các bước của thuật toán
+	int start = 0, end = 0;
+	int result = 0;
+	// Đếm và thêm ký tự vào map
+	map<char, int> mpHash;
+	for (end = 0; end < s.size(); end++)
+	{
+		// Trường hợp ko tìm thấy và thêm index vào
+		if (mpHash.count(s[end]) == 0 || mpHash[s[end]] < start) {
+			mpHash[s[end]] = end;
+			if (end == s.size() - 1) {
+				cout << "Special case\n";
+				return max(result, end + 1 - start);
+			}
+		}
+		// Trường hợp tìm thấy thì move start lên 1 rồi thực hiện tiếp các bước
+		else {
+			result = max(result, end - start);
+			cout << "Result change: " << result << "\n";
+			cout << "Start: " << start << "\n";
+			cout << "End: " << end << "\n";
+
+			start = mpHash[s[end]] + 1;
+			mpHash[s[end]] = end;	
+		}
+	}
+	return result;
 }

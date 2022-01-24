@@ -5,6 +5,7 @@
 // Import ở challenge 20
 #include <stack>;
 
+#include <map>;
 using namespace std;
 
 struct ListNode {
@@ -38,7 +39,9 @@ public:
 	int maxSubArray(vector<int>& nums);
 	// Leetcode challenge 2
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
-
+	// Leetcode challenge 3: Medium
+	// Find length of the longest substring without duplicate a single char
+	int lengthOfLongestSubstring(string s);
 
 	// Framework
 	vector<int> createVectorFromArray(int a[], int length);
