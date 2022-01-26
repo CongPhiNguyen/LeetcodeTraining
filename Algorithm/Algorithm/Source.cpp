@@ -5,5 +5,5 @@ using namespace std;
 
 int main() {
 	Solution solution;
-	cout << solution.lengthOfLongestSubstring("tmmzuxt");
+	cout << "Result: " << solution.longestPalindrome("ccc");
 }

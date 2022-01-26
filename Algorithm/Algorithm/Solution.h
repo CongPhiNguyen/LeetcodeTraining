@@ -42,6 +42,10 @@ public:
 	// Leetcode challenge 3: Medium
 	// Find length of the longest substring without duplicate a single char
 	int lengthOfLongestSubstring(string s);
+	// Leetcode challenge 5: Medium
+	string longestPalindrome(string s);
+
+
 
 	// Framework
 	vector<int> createVectorFromArray(int a[], int length);

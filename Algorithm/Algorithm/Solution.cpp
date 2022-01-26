@@ -386,3 +386,58 @@ int Solution::lengthOfLongestSubstring(string s) {
 	}
 	return result;
 }
+// Leetcode challenge 5
+bool isPalindrome(string s)
+{
+	for (int i = 0; i < s.size() / 2; i++) {
+		if (s[i] != s[s.size() - 1 -i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+string Solution::longestPalindrome(string s) {
+	if (s.size() == 1) return s;
+	// save location of each character
+	vector<vector<int>> saveLocation;
+	saveLocation.resize(126, vector<int>(0));
+	for (int i = 0; i < s.size(); i++)
+	{
+		saveLocation[s[i]].push_back(i);
+	}
+	// Dò hết các vector có độ dài lớn hơn 2 để mà có thể giảm được lần check palindrome
+	string result = {s[0]};
+	for (int i = 0; i < saveLocation.size(); i++)
+	{
+		for (int j = 0; j + 1 < saveLocation[i].size(); j++)
+		{
+			cout << "J = " << j << "\n";
+			for (int k = j + 1; k < saveLocation[i].size(); k++) {
+				cout << "Check: " << saveLocation[i][j] <<" " << saveLocation[i][k] << " " << s.substr(saveLocation[i][j], saveLocation[i][k] - saveLocation[i][j] + 1) << "\n";
+				if (saveLocation[i][k] - saveLocation[i][j] < result.length()) {
+					continue;
+				}
+				else {
+					if (isPalindrome(s.substr(saveLocation[i][j], saveLocation[i][k] - saveLocation[i][j] + 1)))
+					{
+						result = s.substr(saveLocation[i][j], saveLocation[i][k] - saveLocation[i][j] + 1);
+						cout << "Result change: " << s.substr(saveLocation[i][j], saveLocation[i][k] - saveLocation[i][j] + 1) << "\n";
+					}
+				}
+			}
+		}
+	}
+	//// In cái vector ra để debug
+	/*for (int i = 0; i < saveLocation.size(); i++)
+	{
+		cout << (char)(i + 'a') << " length: " << saveLocation[i].size() << " ";
+		for (int j = 0; j < saveLocation[i].size(); j++)
+		{
+			cout << saveLocation[i][j] << " ";
+		}
+		cout << "\n";
+	}*/
+
+	return result;
+}
