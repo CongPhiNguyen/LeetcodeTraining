@@ -48,6 +48,8 @@ public:
 	int myAtoi(string s);
 	// Leetcode challenge 58:
 	int lengthOfLastWord(string s);
+	// Leetcode challenge 66
+	vector<int> plusOne(vector<int>& digits);
 
 	// Framework
 	vector<int> createVectorFromArray(int a[], int length);

@@ -460,4 +460,30 @@ int Solution::lengthOfLastWord(string s) {
 	}
 	return resultString.length();
 }
-int lengthOfLastWord(string s);
+// Leetcode challenge 66
+vector<int> Solution::plusOne(vector<int>&digits) {
+	if (digits[digits.size() - 1] < 9) {
+		digits[digits.size() - 1] = digits[digits.size() - 1] + 1;
+		return digits;
+	}
+	else {
+		vector<int> result;
+		for (int i = digits.size() - 1; i >= 0; i--)
+		{
+			if (digits[i] != 9) {
+				digits[i] = digits[i] + 1;
+				return digits;
+			}
+			else {
+				digits[i] = 0;
+				result.push_back(0);
+				if (i == 0) {
+					result.push_back(1);
+					reverse(result.begin(), result.end());
+					return result;
+				}
+			}
+		}
+	}
+	return digits;
+}
