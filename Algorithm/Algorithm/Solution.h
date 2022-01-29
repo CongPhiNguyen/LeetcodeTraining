@@ -44,8 +44,10 @@ public:
 	int lengthOfLongestSubstring(string s);
 	// Leetcode challenge 5: Medium
 	string longestPalindrome(string s);
-
-
+	// Leetcode challenge 8: Medium
+	int myAtoi(string s);
+	// Leetcode challenge 58:
+	int lengthOfLastWord(string s);
 
 	// Framework
 	vector<int> createVectorFromArray(int a[], int length);

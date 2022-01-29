@@ -441,3 +441,23 @@ string Solution::longestPalindrome(string s) {
 
 	return result;
 }
+// Leetcode challenge 8
+int Solution::myAtoi(string s) {
+	// Loại bỏ hết các khoảng trắng
+	return 0;
+}
+// Leetcode challenge 58
+int Solution::lengthOfLastWord(string s) {
+	string resultString = "";
+	for (int i = s.length() - 1; i >= 0; i--) {
+		if (s[i] == ' ')
+		{
+			if (resultString != "") return resultString.length();
+		}
+		else {
+			resultString += s[i];
+		}
+	}
+	return resultString.length();
+}
+int lengthOfLastWord(string s);
