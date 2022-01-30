@@ -50,6 +50,8 @@ public:
 	int lengthOfLastWord(string s);
 	// Leetcode challenge 66
 	vector<int> plusOne(vector<int>& digits);
+	// Leetcode challenge 67
+	string addBinary(string a, string b);
 
 	// Framework
 	vector<int> createVectorFromArray(int a[], int length);

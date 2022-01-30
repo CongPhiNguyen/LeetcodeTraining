@@ -487,3 +487,105 @@ vector<int> Solution::plusOne(vector<int>&digits) {
 	}
 	return digits;
 }
+// Leetcode challenge 67
+string Solution::addBinary(string a, string b) {
+	string result = "";
+	int lenga = a.size() - 1, lengb = b.size() - 1;
+	int remember = 0;
+	while (lenga != -1 && lengb != -1) {
+		if (a[lenga] == '1' && b[lengb] == '1') {
+			if (remember == 1)
+			{
+				result = '1' + result;
+			}
+			else {
+				result = "0" + result;
+			}
+			remember = 1;
+		}
+		else if(a[lenga] == '0' && b[lengb] == '0'){
+			if (remember == 1)
+			{
+				result = '1' + result;
+			}
+			else {
+				result = "0" + result;
+			}
+			remember = 0;
+		}
+		else {
+			if (remember == 1)
+			{
+				result = '0' + result;
+				remember = 1;
+			}
+			else {
+				result = "1" + result;
+				remember = 0;
+			}
+		}
+		lenga--;
+		lengb--;
+	}
+
+	if (lenga > lengb) {
+		while (lenga >= 0)
+		{
+			cout << "Stuck in round 1\n";
+			if (remember == 1)
+			{
+				if (a[lenga] == '1') {
+					result = "0" + result;
+					remember = 1;
+				}
+				else {
+					result = "1" + result;
+					remember = 0;
+				}
+			}
+			else {
+				if (a[lenga] == '1') {
+					result = "1" + result;
+				}
+				else {
+					result = "0" + result;
+				}
+				remember = 0;
+			}
+			lenga--;
+		}
+		
+	}
+	else {
+		while (lengb >= 0)
+		{
+			if (remember == 1)
+			{
+				if (b[lengb] == '1') {
+					result = "0" + result;
+					remember = 1;
+				}
+				else {
+					result = "1" + result;
+					remember = 0;
+				}
+			}
+			else {
+				if (b[lengb] == '1') {
+					result = "1" + result;
+				}
+				else {
+					result = "0" + result;
+				}
+				remember = 0;
+			}
+			lengb--;
+		}
+		
+	}
+	if (remember == 1)
+	{
+		result = "1" + result;
+	}
+	return result;
+}
