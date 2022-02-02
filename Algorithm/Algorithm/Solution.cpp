@@ -661,3 +661,113 @@ bool Solution::isValidSudoku(vector<vector<char>>& board) {
 
 	return true;
 }
+
+// Leetcode challene 37
+vector<int> Solution::locationOfEmptyCell(vector<vector<char>> board) {
+	vector<int> result;
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++) {
+			if (board[i][j] == '.') {
+				result.push_back(i * 9 + j);
+			}
+		}
+	}
+	return result;
+}
+
+bool Solution::checkCombination(vector<vector<char>> board,
+	vector<int> emptyCell, 
+	vector<char> filledEmptyCell) {
+
+	vector<vector<char>> copyBoard = vector<vector<char>>(board);
+	for (int i = 0; i < emptyCell.size(); i++)
+	{
+		if (filledEmptyCell[i] == '.') break;
+		int x, y;
+		x = emptyCell[i] / 9;
+		y = emptyCell[i] % 9;
+		
+		copyBoard[x][y] = filledEmptyCell[i];
+	}
+	Solution solution;
+	return solution.isValidSudoku(copyBoard);
+}
+vector<int> Solution::vectorFromIntArray(int a[], int n) {
+	vector<int> result;
+	for (int i = 0; i < n; i++) {
+		result.push_back(a[i]);
+	}
+	return result;
+}
+vector<char> Solution::vectorFromCharArray(char a[], int n) {
+	vector<char> result;
+	for (int i = 0; i < n; i++) {
+		result.push_back(a[i]);
+	}
+	return result;
+}
+
+void Solution::solveSudoku(vector<vector<char>>& board) {
+	Solution solution;
+	vector<int> emptyCell = solution.locationOfEmptyCell(board);
+	vector<char> filledEmptyCell;
+	filledEmptyCell.resize(emptyCell.size(), '.');
+
+	int index = 0;
+	while (index < emptyCell.size()) {
+		if (filledEmptyCell[index] == '.') {
+			filledEmptyCell[index] = '1';
+			if (checkCombination(board, emptyCell, filledEmptyCell))
+			{
+				index++;
+				/*for (int i = 0; i < filledEmptyCell.size(); i++)
+				{
+					cout << filledEmptyCell[i] << " ";
+				}
+				cout << "\n";*/
+			}
+		}
+		else if (filledEmptyCell[index] == '9')
+		{
+			filledEmptyCell[index] = '.';
+			index--;
+		}
+		else {
+			filledEmptyCell[index] = filledEmptyCell[index] + 1;
+			if (checkCombination(board, emptyCell, filledEmptyCell))
+			{
+				index++;
+				/*for (int i = 0; i < filledEmptyCell.size(); i++)
+				{
+					cout << filledEmptyCell[i] << " ";
+				}
+				cout << "\n";*/
+			}
+		}
+
+		
+	}
+	//cout << "Finish\n";
+	/*for (int i = 0; i < filledEmptyCell.size(); i++)
+	{
+		cout << filledEmptyCell[i] << " ";
+	}
+	cout << "\n";*/
+	
+	// Thay thế cái mảng chuỗi ban đầu
+	for (int i = 0; i < emptyCell.size(); i++) {
+		int x = emptyCell[i] / 9;
+		int y = emptyCell[i] % 9;
+
+		board[x][y] = filledEmptyCell[i];
+	}
+
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			cout << board[i][j] << " ";
+		}
+		cout << "\n";
+	}
+}
+

@@ -60,8 +60,13 @@ public:
 
 	// Leetcode challge 36: Medium
 	bool isValidSudoku(vector<vector<char>>& board);
-	
-	
+	// Leetcode challenge 37: Hard
+	void solveSudoku(vector<vector<char>>& board);
+	vector<int> locationOfEmptyCell(vector<vector<char>> board);
+	bool checkCombination(vector<vector<char>> board,
+		vector<int> emptyCell,
+		vector<char> filledEmptyCell);
+
 	// Framework
 	
 	vector<int> createVectorFromArray(int a[], int length);
@@ -69,6 +74,7 @@ public:
 	ListNode* createLinkList(const vector<int>& a);
 	// Sudoku
 	vector<vector<char>> createSudokuBoard(char a[9][9]);
-
+	vector<int> vectorFromIntArray(int a[], int n);
+	vector<char> vectorFromCharArray(char a[], int n);
 };
 
