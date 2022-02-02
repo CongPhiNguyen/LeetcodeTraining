@@ -52,7 +52,9 @@ public:
 	vector<int> plusOne(vector<int>& digits);
 	// Leetcode challenge 67
 	string addBinary(string a, string b);
-
+	// Leetcode challenge 69
+	// Square root without using sqrt
+	int mySqrt(int x);
 	// Framework
 	vector<int> createVectorFromArray(int a[], int length);
 	void printLinkList(ListNode* head);

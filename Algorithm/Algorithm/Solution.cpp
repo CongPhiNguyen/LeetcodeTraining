@@ -589,3 +589,12 @@ string Solution::addBinary(string a, string b) {
 	}
 	return result;
 }
+// Leetcode challnge 69
+// Square root without using sqrt
+int Solution::mySqrt(int x) {
+	if (x == 0) return 0;
+	double result = 1.0f;
+	while (fabs(result * result - x) >= 0.1)
+		result = (x / result - result) / 2 + result;
+	return (int)result;
+}
