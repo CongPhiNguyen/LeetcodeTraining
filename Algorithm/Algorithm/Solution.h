@@ -6,6 +6,8 @@
 #include <stack>;
 
 #include <map>;
+
+#include <set>
 using namespace std;
 
 struct ListNode {
@@ -55,9 +57,18 @@ public:
 	// Leetcode challenge 69
 	// Square root without using sqrt
 	int mySqrt(int x);
+
+	// Leetcode challge 36: Medium
+	bool isValidSudoku(vector<vector<char>>& board);
+	
+	
 	// Framework
+	
 	vector<int> createVectorFromArray(int a[], int length);
 	void printLinkList(ListNode* head);
 	ListNode* createLinkList(const vector<int>& a);
+	// Sudoku
+	vector<vector<char>> createSudokuBoard(char a[9][9]);
+
 };
 

@@ -598,3 +598,66 @@ int Solution::mySqrt(int x) {
 		result = (x / result - result) / 2 + result;
 	return (int)result;
 }
+
+// Leetcode challenge 36
+vector<vector<char>> Solution::createSudokuBoard(char a[9][9]) {
+	vector<vector<char>> result;
+	for (int i = 0; i < 9; i++) {
+		vector<char> temp;
+		for (int j = 0; j < 9; j++) {
+			temp.push_back(a[i][j]);
+		}
+		result.push_back(temp);
+	}
+	return result;
+}
+bool Solution::isValidSudoku(vector<vector<char>>& board) {
+	// Check hàng ngang
+	for (int i = 0; i < 9; i++) {
+		set<char> s;
+		for (int j = 0; j < 9; j++) {
+			if (s.count(board[i][j]) == 1)
+			{
+				return false;
+			}
+			else if (board[i][j] != '.') {
+				s.insert(board[i][j]);
+			}
+		}
+	}
+	// Check hàng dọc
+	for (int j = 0; j < 9; j++) {
+		set<char> s;
+		for (int i = 0; i < 9; i++) {
+			if (s.count(board[i][j]) == 1)
+			{
+				return false;
+			}
+			else if (board[i][j] != '.') { 
+				s.insert(board[i][j]); 
+			}
+		
+		}
+	}
+	// Check các ô 3x3
+	for (int i1 = 0; i1 < 3; i1++)
+	{
+		for (int j1 = 0; j1 < 3; j1++) {
+			set<char> s;
+			for(int i = 0 ; i < 3 ; i++)
+			{
+				for(int j = 0 ; j < 3; j++)
+				{
+					if (s.count(board[3 * i1 + i][3 * j1 + j]) == 1) {
+						return false;
+					}
+					else if(board[3 * i1 + i][3 * j1 + j] != '.'){
+						s.insert(board[3 * i1 + i][3 * j1 + j]);
+					}
+				}
+			}
+		}
+	}
+
+	return true;
+}
