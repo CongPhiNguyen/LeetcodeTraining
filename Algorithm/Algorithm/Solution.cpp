@@ -678,10 +678,10 @@ vector<int> Solution::locationOfEmptyCell(vector<vector<char>> board) {
 
 bool Solution::checkCombination(vector<vector<char>> board,
 	vector<int> emptyCell, 
-	vector<char> filledEmptyCell) {
+	vector<char> filledEmptyCell, int index) {
 
 	vector<vector<char>> copyBoard = vector<vector<char>>(board);
-	for (int i = 0; i < emptyCell.size(); i++)
+	for (int i = 0; i <= index; i++)
 	{
 		if (filledEmptyCell[i] == '.') break;
 		int x, y;
@@ -690,8 +690,54 @@ bool Solution::checkCombination(vector<vector<char>> board,
 		
 		copyBoard[x][y] = filledEmptyCell[i];
 	}
-	Solution solution;
-	return solution.isValidSudoku(copyBoard);
+
+	int x = emptyCell[index] / 9;
+	int y = emptyCell[index] % 9;
+	// Check hàng dọc
+	set<char> s;
+	for (int i = 0; i < 9; i++)
+	{
+		if (copyBoard[i][y] != '.')
+		{
+			if (s.count(copyBoard[i][y]) == 1) {
+				return false;
+			}
+			else {
+				s.insert(copyBoard[i][y]);
+			}
+		}
+	}
+	s.clear();
+	// Check hàng ngang
+	for (int i = 0; i < 9; i++)
+	{
+		if (copyBoard[x][i] != '.')
+		{
+			if (s.count(copyBoard[x][i]) == 1) {
+				return false;
+			}
+			else {
+				s.insert(copyBoard[x][i]);
+			}
+		}
+	}
+	s.clear();
+	// Check 3x3
+	int i1 = x / 3;
+	int j1 = y / 3;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (s.count(copyBoard[3 * i1 + i][3 * j1 + j]) == 1) {
+				return false;
+			}
+			else if (copyBoard[3 * i1 + i][3 * j1 + j] != '.') {
+				s.insert(copyBoard[3 * i1 + i][3 * j1 + j]);
+			}
+		}
+	}
+	return true;
 }
 vector<int> Solution::vectorFromIntArray(int a[], int n) {
 	vector<int> result;
@@ -718,7 +764,7 @@ void Solution::solveSudoku(vector<vector<char>>& board) {
 	while (index < emptyCell.size()) {
 		if (filledEmptyCell[index] == '.') {
 			filledEmptyCell[index] = '1';
-			if (checkCombination(board, emptyCell, filledEmptyCell))
+			if (checkCombination(board, emptyCell, filledEmptyCell, index))
 			{
 				index++;
 				/*for (int i = 0; i < filledEmptyCell.size(); i++)
@@ -732,10 +778,14 @@ void Solution::solveSudoku(vector<vector<char>>& board) {
 		{
 			filledEmptyCell[index] = '.';
 			index--;
+			if (index == -1) {
+				cout << "No solution\n";
+				return;
+			}
 		}
 		else {
 			filledEmptyCell[index] = filledEmptyCell[index] + 1;
-			if (checkCombination(board, emptyCell, filledEmptyCell))
+			if (checkCombination(board, emptyCell, filledEmptyCell, index))
 			{
 				index++;
 				/*for (int i = 0; i < filledEmptyCell.size(); i++)

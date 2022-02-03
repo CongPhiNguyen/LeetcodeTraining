@@ -65,7 +65,7 @@ public:
 	vector<int> locationOfEmptyCell(vector<vector<char>> board);
 	bool checkCombination(vector<vector<char>> board,
 		vector<int> emptyCell,
-		vector<char> filledEmptyCell);
+		vector<char> filledEmptyCell, int index);
 
 	// Framework
 	
