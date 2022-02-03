@@ -676,19 +676,42 @@ vector<int> Solution::locationOfEmptyCell(vector<vector<char>> board) {
 	return result;
 }
 
+vector<vector<char>> currentCopyBoard;
+int currentIndex;
 bool Solution::checkCombination(vector<vector<char>> board,
 	vector<int> emptyCell, 
 	vector<char> filledEmptyCell, int index) {
+	
+	if (currentCopyBoard.size() == 0) {
+		currentCopyBoard = vector<vector<char>>(board);
+	}
+	else {
+		if (currentIndex < index)
+		{
+			for (int i = currentIndex; i <= index; i++) {
+				int x, y;
+				x = emptyCell[i] / 9;
+				y = emptyCell[i] % 9;
 
-	vector<vector<char>> copyBoard = vector<vector<char>>(board);
-	for (int i = 0; i <= index; i++)
-	{
-		if (filledEmptyCell[i] == '.') break;
-		int x, y;
-		x = emptyCell[i] / 9;
-		y = emptyCell[i] % 9;
-		
-		copyBoard[x][y] = filledEmptyCell[i];
+				currentCopyBoard[x][y] = filledEmptyCell[i];
+			}
+		}
+		else {
+			for (int i = index; i <= currentIndex; i++)
+			{
+				int x, y;
+				x = emptyCell[i] / 9;
+				y = emptyCell[i] % 9;
+
+				currentCopyBoard[x][y] = '.';
+			}
+			int x, y;
+			x = emptyCell[index] / 9;
+			y = emptyCell[index] % 9;
+
+			currentCopyBoard[x][y] = filledEmptyCell[index];
+		}
+		currentIndex = index;
 	}
 
 	int x = emptyCell[index] / 9;
@@ -697,13 +720,13 @@ bool Solution::checkCombination(vector<vector<char>> board,
 	set<char> s;
 	for (int i = 0; i < 9; i++)
 	{
-		if (copyBoard[i][y] != '.')
+		if (currentCopyBoard[i][y] != '.')
 		{
-			if (s.count(copyBoard[i][y]) == 1) {
+			if (s.count(currentCopyBoard[i][y]) == 1) {
 				return false;
 			}
 			else {
-				s.insert(copyBoard[i][y]);
+				s.insert(currentCopyBoard[i][y]);
 			}
 		}
 	}
@@ -711,13 +734,13 @@ bool Solution::checkCombination(vector<vector<char>> board,
 	// Check hàng ngang
 	for (int i = 0; i < 9; i++)
 	{
-		if (copyBoard[x][i] != '.')
+		if (currentCopyBoard[x][i] != '.')
 		{
-			if (s.count(copyBoard[x][i]) == 1) {
+			if (s.count(currentCopyBoard[x][i]) == 1) {
 				return false;
 			}
 			else {
-				s.insert(copyBoard[x][i]);
+				s.insert(currentCopyBoard[x][i]);
 			}
 		}
 	}
@@ -729,11 +752,11 @@ bool Solution::checkCombination(vector<vector<char>> board,
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			if (s.count(copyBoard[3 * i1 + i][3 * j1 + j]) == 1) {
+			if (s.count(currentCopyBoard[3 * i1 + i][3 * j1 + j]) == 1) {
 				return false;
 			}
-			else if (copyBoard[3 * i1 + i][3 * j1 + j] != '.') {
-				s.insert(copyBoard[3 * i1 + i][3 * j1 + j]);
+			else if (currentCopyBoard[3 * i1 + i][3 * j1 + j] != '.') {
+				s.insert(currentCopyBoard[3 * i1 + i][3 * j1 + j]);
 			}
 		}
 	}
