@@ -858,3 +858,17 @@ ListNode* Solution::deleteDuplicates(ListNode* head) {
 	}
 	return head;
 }
+
+// Leetcode challenge 94
+void travel(TreeNode* root, vector<int>& result) {
+	if (root == nullptr) return;
+	travel(root->left, result);
+	result.push_back(root->val);
+	travel(root->right, result);
+}
+
+vector<int> Solution::inorderTraversal(TreeNode* root) {
+	vector<int> result;
+	travel(root, result);
+	return result;
+}
