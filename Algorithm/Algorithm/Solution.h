@@ -79,7 +79,8 @@ public:
 	ListNode* deleteDuplicates(ListNode* head);
 	// Leetcode challenge 94
 	vector<int> inorderTraversal(TreeNode* root);
-
+	// Leetcode challenge 118
+	vector<vector<int>> pascalTriangle(int numRows);
 	// Framework
 	
 	vector<int> createVectorFromArray(int a[], int length);

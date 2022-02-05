@@ -872,3 +872,31 @@ vector<int> Solution::inorderTraversal(TreeNode* root) {
 	travel(root, result);
 	return result;
 }
+// Leetcode challenge 118
+vector<vector<int>> Solution::pascalTriangle(int numRows) {
+	vector<vector<int>> result;
+	for (int i = 0; i < numRows; i++) {
+		vector<int> rowIndex;
+		if (i == 0)
+		{
+			rowIndex.push_back(1);
+		}
+		else if (i == 1)
+		{
+			rowIndex.push_back(1);
+			rowIndex.push_back(1);
+		}
+		else {
+			rowIndex.push_back(1);
+			for (int i = 0; i < result[result.size() - 1].size() - 1; i++) {
+				rowIndex.push_back(
+					result[result.size() - 1][i] +
+					result[result.size() - 1][i + 1]
+				);
+			}
+			rowIndex.push_back(1);
+		}
+		result.push_back(rowIndex);
+	}
+	return result;
+}
