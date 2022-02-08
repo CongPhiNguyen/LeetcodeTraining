@@ -81,6 +81,7 @@ public:
 	vector<int> inorderTraversal(TreeNode* root);
 	// Leetcode challenge 118
 	vector<vector<int>> pascalTriangle(int numRows);
+	bool isPalindromeUpgrade(string s);
 	// Framework
 	
 	vector<int> createVectorFromArray(int a[], int length);

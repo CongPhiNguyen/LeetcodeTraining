@@ -900,3 +900,32 @@ vector<vector<int>> Solution::pascalTriangle(int numRows) {
 	}
 	return result;
 }
+
+bool Solution::isPalindromeUpgrade(string s) {
+	for (int i = 0; i < s.size(); i++) {
+		if ((s[i] <= 'z' && s[i] >= 'a') || (s[i] <= 'Z' && s[i] >= 'A') || (s[i] <= '9' && s[i] >= '0')) {
+			continue;
+		}
+		else {
+			s.erase(s.begin() + i);
+			i--;
+		}
+	}
+	cout << "s= " << s << "\n";
+	if (s.size() == 0) return true;
+	for (int i = 0; i <= s.size() / 2; i++) {
+		if (s[i] == s[s.size() - 1 - i] || s[i] == (s[s.size() - 1 - i] + 'a' - 'A') ||
+			s[i] == (s[s.size() - 1 - i] + 'A' - 'a')) {
+			if (s[i] <= '9' && s[i] >= '0')
+			{
+				if (s[i] == s[s.size() - 1 - i]) {
+					continue;
+				}
+				else return false;
+			}
+			continue;
+		}
+		else return false;
+	}
+	return true;
+}
