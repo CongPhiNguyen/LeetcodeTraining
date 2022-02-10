@@ -900,7 +900,7 @@ vector<vector<int>> Solution::pascalTriangle(int numRows) {
 	}
 	return result;
 }
-
+// Leetcode challenge 125
 bool Solution::isPalindromeUpgrade(string s) {
 	for (int i = 0; i < s.size(); i++) {
 		if ((s[i] <= 'z' && s[i] >= 'a') || (s[i] <= 'Z' && s[i] >= 'A') || (s[i] <= '9' && s[i] >= '0')) {
@@ -928,4 +928,27 @@ bool Solution::isPalindromeUpgrade(string s) {
 		else return false;
 	}
 	return true;
+}
+
+// Leetcode challenge 560
+int Solution::subarraySum(vector<int>& nums, int k) {
+	// Biến đếm kết quả
+	int result = 0;
+	// Lưu lại các prefix vào 1 vector
+	vector<int> prefix;
+	int sum = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		sum += nums[i];
+		prefix.push_back(sum);
+	}
+	map<int, int> mp;
+	for (int i = 0; i < prefix.size(); i++) {
+		if (prefix[i] == k) result++;
+		if (mp.find(prefix[i] - k) != mp.end()) {
+			result += mp[prefix[i] - k];
+		}
+		mp[prefix[i]] ++;
+	}
+	return result;
 }
