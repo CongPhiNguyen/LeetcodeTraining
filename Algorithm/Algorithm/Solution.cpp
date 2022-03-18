@@ -921,6 +921,12 @@ bool Solution::isSymmetric(TreeNode* root) {
 	return isSyncTree(root->left, root->right);
 }
 
+// Leetcode challenge 104
+int Solution::maxDepth(TreeNode* root) {
+	if (root == nullptr) return 0;
+	return max(maxDepth(root->left) + 1, maxDepth(root->right) + 1);
+}
+
 vector<int> Solution::inorderTraversal(TreeNode* root) {
 	vector<int> result;
 	travel(root, result);
