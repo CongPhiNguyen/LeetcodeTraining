@@ -77,6 +77,8 @@ public:
 		vector<char> filledEmptyCell, int index);
 	// Leetcode challenge 83
 	ListNode* deleteDuplicates(ListNode* head);
+	// Leetcode challenge 88
+	void merge(vector<int>& nums1, int m, vector<int>& nums2, int n);
 	// Leetcode challenge 94
 	vector<int> inorderTraversal(TreeNode* root);
 	// Leetcode challenge 118
@@ -85,12 +87,16 @@ public:
 	bool isPalindromeUpgrade(string s);
 	// Leetcode challenge 560: Medium
 	int subarraySum(vector<int>& nums, int k);
-	
+	// Leetcode challenge 567: Medium
+	bool checkInclusion(string s1, string s2);
+
 	// Framework
 	
 	vector<int> createVectorFromArray(int a[], int length);
 	void printLinkList(ListNode* head);
 	ListNode* createLinkList(const vector<int>& a);
+	void printVector(const vector<int>& a);
+
 	// Sudoku
 	vector<vector<char>> createSudokuBoard(char a[9][9]);
 	vector<int> vectorFromIntArray(int a[], int n);

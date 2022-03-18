@@ -858,6 +858,34 @@ ListNode* Solution::deleteDuplicates(ListNode* head) {
 	}
 	return head;
 }
+// Leetcode challenge 88
+void movePosition(vector<int>& a1, int position, int value) {
+	if (a1.size() - 1 == position) {
+		a1[position] = value;
+		return;
+	}
+	for (int i = a1.size() - 1; i > position; i--)
+	{
+		a1[i] = a1[i - 1];
+	}
+	a1[position] = value;
+	return;
+}
+void Solution::merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+	// Trường hợp all nums2 nhỏ hơn nums1 
+	// Trường hợp all nums1 nhỏ hơn nums2 
+	int currentIndex = 0;
+	for (int i = 0; i < nums2.size(); i++) {
+		while (nums1[currentIndex] <= nums2[i] && currentIndex < m) {
+			currentIndex++;
+		}
+		movePosition(nums1, currentIndex, nums2[i]);
+		currentIndex++;
+		m++;
+	}
+}
+
+
 
 // Leetcode challenge 94
 void travel(TreeNode* root, vector<int>& result) {
@@ -951,4 +979,40 @@ int Solution::subarraySum(vector<int>& nums, int k) {
 		mp[prefix[i]] ++;
 	}
 	return result;
+}
+
+// Leetcode challenge 562
+bool Solution::checkInclusion(string s1, string s2) {
+	int a[26] = { 0 };
+	for (int i = 0; i < s1.size(); i++) {
+		a[s1[i] - 'a'] ++;
+	}
+	vector<vector<int>> s;
+	for (int i = 0; i < 26; i++) {
+		vector<int> temp;
+		s.push_back(temp);
+	}
+
+	for (int i = 0; i < s2.size(); i++) {
+		s[s2[i] - 'a'].push_back(i);
+	}
+
+	// Lấy các biến đếm của bên a so sánh với bên kia xem thử có đủ không
+	// Push vào set tất cả các cái có thể để mà check thử xem nó có là chuỗi tăng liên tiếp
+	
+	// Làm một số cái giá trị chắc chắn có trước
+	for (int i = 0; i < 26; i++) {
+		
+	}
+	return false;
+
+}
+
+
+// Framework
+void Solution::printVector(const vector<int>& a) {
+	for (int i = 0; i < a.size(); i++) {
+		cout << a[i] << " ";
+	}
+	cout << '\n';
 }
