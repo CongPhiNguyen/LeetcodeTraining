@@ -895,6 +895,17 @@ void travel(TreeNode* root, vector<int>& result) {
 	travel(root->right, result);
 }
 
+// Leetcode challenge 100
+bool Solution::isSameTree(TreeNode* p, TreeNode* q) {
+	if (p == nullptr && q == nullptr) {
+		return true;
+	}
+	if ((p == nullptr && q != nullptr) || (p != nullptr && q == nullptr)) {
+		return false;
+	}
+	return (isSameTree(p->left, q->left)) && (isSameTree(p->right, q->right)) && (p->val == q->val);
+}
+
 vector<int> Solution::inorderTraversal(TreeNode* root) {
 	vector<int> result;
 	travel(root, result);
