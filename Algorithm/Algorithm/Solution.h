@@ -83,7 +83,8 @@ public:
 	vector<int> inorderTraversal(TreeNode* root);
 	//Leetcode challenge 100
 	bool isSameTree(TreeNode* p, TreeNode* q);
-
+	//Leetcode challenge 101
+	bool isSymmetric(TreeNode* root);
 	// Leetcode challenge 118
 	vector<vector<int>> pascalTriangle(int numRows);
 	// Leetcode challenge 125

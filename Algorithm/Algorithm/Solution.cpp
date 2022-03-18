@@ -905,6 +905,21 @@ bool Solution::isSameTree(TreeNode* p, TreeNode* q) {
 	}
 	return (isSameTree(p->left, q->left)) && (isSameTree(p->right, q->right)) && (p->val == q->val);
 }
+// Leetcode challenge 101
+bool isSyncTree(TreeNode* p, TreeNode* q) {
+	if (p == nullptr && q == nullptr) {
+		return true;
+	}
+	if ((p == nullptr && q != nullptr) || (p != nullptr && q == nullptr)) {
+		return false;
+	}
+	return (isSyncTree(p->left, q->right)) && (isSyncTree(p->right, q->left))
+		&& (p->val == q->val);
+}
+bool Solution::isSymmetric(TreeNode* root) {
+	if (root == nullptr) return true;
+	return isSyncTree(root->left, root->right);
+}
 
 vector<int> Solution::inorderTraversal(TreeNode* root) {
 	vector<int> result;
