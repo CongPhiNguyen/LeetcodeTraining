@@ -977,6 +977,25 @@ vector<int> Solution::getRow(int rowIndex) {
 	}
 	return initialVector;
 }
+// Leetcode challenge 121
+int Solution::maxProfit(vector<int>& prices) {
+	int maxProfits = 0;
+	// Sliding window
+	int start = 0, end = 1;
+	if (prices.size() == 1) return 0;
+	while (end != prices.size()) {
+		int currentTransfer = prices[end] - prices[start];
+		if (currentTransfer > maxProfits) {
+			maxProfits = currentTransfer;
+		}
+		else if (currentTransfer <= 0) {
+			start = end;
+		}
+		end++;
+	}
+	return maxProfits;
+}
+
 
 // Leetcode challenge 125
 bool Solution::isPalindromeUpgrade(string s) {
