@@ -89,6 +89,8 @@ public:
 	int maxDepth(TreeNode* root);
 	// Leetcode challenge 118
 	vector<vector<int>> pascalTriangle(int numRows);
+	// Leetcode challenge 119
+	vector<int> getRow(int rowIndex);
 	// Leetcode challenge 125
 	bool isPalindromeUpgrade(string s);
 	// Leetcode challenge 560: Medium

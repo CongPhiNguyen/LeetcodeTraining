@@ -960,6 +960,24 @@ vector<vector<int>> Solution::pascalTriangle(int numRows) {
 	}
 	return result;
 }
+// Leetcode challenge 119
+vector<int> Solution::getRow(int rowIndex) {
+	vector<int> initialVector;
+	initialVector.push_back(1);
+	if (rowIndex == 0) return initialVector;
+	while (rowIndex > 0) {
+		vector<int> res;
+		res.push_back(1);
+		for (int i = 0; i < initialVector.size() - 1; i++) {
+			res.push_back(initialVector[i] + initialVector[i + 1]);
+		}
+		res.push_back(1);
+		initialVector = res;
+		rowIndex--;
+	}
+	return initialVector;
+}
+
 // Leetcode challenge 125
 bool Solution::isPalindromeUpgrade(string s) {
 	for (int i = 0; i < s.size(); i++) {
