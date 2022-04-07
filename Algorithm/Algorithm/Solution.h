@@ -95,6 +95,8 @@ public:
 	int maxProfit(vector<int>& prices);
 	// Leetcode challenge 125
 	bool isPalindromeUpgrade(string s);
+	// Leetcode challenge 217
+	bool containsDuplicate(vector<int>& nums);
 	// Leetcode challenge 560: Medium
 	int subarraySum(vector<int>& nums, int k);
 	// Leetcode challenge 567: Medium

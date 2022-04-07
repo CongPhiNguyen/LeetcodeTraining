@@ -1026,7 +1026,19 @@ bool Solution::isPalindromeUpgrade(string s) {
 	}
 	return true;
 }
-
+// Leetcode challenge 217
+bool Solution::containsDuplicate(vector<int>& nums) {
+	set<int> st;
+	for (int i = 0; i < nums.size(); i++) {
+		if (st.count(nums[i]) != 1) {
+			st.insert(nums[i]);
+		}
+		else {
+			return true;
+		}
+	}
+	return false;
+}
 // Leetcode challenge 560
 int Solution::subarraySum(vector<int>& nums, int k) {
 	// Biến đếm kết quả
