@@ -8,6 +8,8 @@
 #include <map>;
 
 #include <set>
+
+#include <algorithm>
 using namespace std;
 
 struct ListNode {
@@ -102,12 +104,100 @@ public:
 	// Leetcode challenge 567: Medium
 	bool checkInclusion(string s1, string s2);
 
+	// MEDIUM
+	// Leetcode chanllenge 56 Merge Intervals
+	static bool comp(vector<int> a, vector<int> b) {
+		return a[0] < b[0];
+	}
+	vector<vector<int>> merge(vector<vector<int>>& intervals) {
+		// sort array
+		sort(intervals.begin(), intervals.end(), comp);
+
+
+		vector<vector<int>> res;
+		vector<int> currentInterval = intervals[0];
+		int currentIndex = 1;
+		while (currentIndex != intervals.size()) {
+			if (currentInterval[1] >= intervals[currentIndex][0]) {
+				if (intervals[currentIndex][1] > currentInterval[1])
+					currentInterval[1] = intervals[currentIndex][1];
+			}
+			else {
+				res.push_back(currentInterval);
+				currentInterval = intervals[currentIndex];
+			}
+			currentIndex++;
+		}
+		res.push_back(currentInterval);
+		return res;
+	}
+
+
+	// Leetcode challenge 1013
+	bool canThreePartsEqualSum(vector<int>& arr) {
+		int sum = 0;
+		for (int i = 0; i < arr.size(); i++) {
+			sum += arr[i];
+		}
+		if (sum % 3 != 0) return false;
+		int partition = sum / 3;
+
+		// Xem thử có đoạn đầu = sum /3 hay không
+		int index = 0;
+		int currentSum = 0;
+		for (int i = index; i < arr.size(); i++) {
+			currentSum += arr[i];
+			if (currentSum == partition) {
+				index = i + 1;
+				break;
+			}
+		}
+		if (index == arr.size()) return false;
+		// Xem thử đoạn sau có sum / 3 hay không
+		currentSum = 0;
+		for (int i = index; i < arr.size(); i++) {
+			currentSum += arr[i];
+			if (currentSum == partition) {
+				index = i+1;
+				if (index == arr.size()) return false;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	// Leetcode 1991
+	int findMiddleIndex(vector<int>& nums) {
+		if (nums.size() == 1) return 0;
+		int sumBegin = 0, sumEnd = 0;
+		int currentMiddle = nums.size() - 1;
+		int res = currentMiddle;
+		bool isOk = false;
+		for (int i = 0; i < nums.size() - 1; i++) {
+			sumBegin += nums[i];
+		}
+		while (currentMiddle >= 0) {
+			if (sumBegin == sumEnd) {
+				res = currentMiddle;
+				isOk = true;
+			} 
+			if (currentMiddle >= 1) {
+				sumBegin -= nums[currentMiddle - 1];
+				sumEnd += nums[currentMiddle];
+			}
+			currentMiddle--;
+		}
+		return isOk ? res : -1;
+	}
 	// Framework
 	
 	vector<int> createVectorFromArray(int a[], int length);
 	void printLinkList(ListNode* head);
 	ListNode* createLinkList(const vector<int>& a);
 	void printVector(const vector<int>& a);
+	bool isPrime(int n);
+
 
 	// Sudoku
 	vector<vector<char>> createSudokuBoard(char a[9][9]);
